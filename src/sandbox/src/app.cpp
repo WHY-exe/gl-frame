@@ -5,13 +5,12 @@
 #include "gl/shader.h"
 #include "gl/texture.h"
 #include "gl/vertex.h"
-#include "glfw_wrap/context.h"
+#include "glfw_backend/context.h"
 #include "util/image_loader.h"
-#include <cmath>
 #include <spdlog/spdlog.h>
+#include <cmath>
 #include <cmrc/cmrc.hpp>
 #include <string_view>
-
 
 CMRC_DECLARE(glsl);
 
@@ -97,15 +96,6 @@ int App::Run() {
 	}
 	vertex_buffer->SetBuffer(std::move(vertices));
 	vertex_buffer->Bind();
-	auto tex = gl::Texture2D::New();
-	tex->Bind();
-	tex->SetParam({
-			{ GL_TEXTURE_WRAP_S, GL_REPEAT },
-			{ GL_TEXTURE_WRAP_T, GL_REPEAT },
-			{ GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR },
-			{ GL_TEXTURE_MAG_FILTER, GL_LINEAR },
-	});
-	tex->SetData(util::ImageLoader("assets/wall.jpg"));
 	gl::vertex::LayoutAttri attri_pos{};
 	attri_pos.index		= 0;
 	attri_pos.size		= 3;
@@ -132,6 +122,16 @@ int App::Run() {
 	layout->SetAttribute(attri_pos);
 	layout->SetAttribute(attri_color);
 	layout->SetAttribute(attri_uv);
+	// binding texture
+	auto tex = gl::Texture2D::New();
+	tex->Bind();
+	tex->SetParam({
+			{ GL_TEXTURE_WRAP_S, GL_REPEAT },
+			{ GL_TEXTURE_WRAP_T, GL_REPEAT },
+			{ GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR },
+			{ GL_TEXTURE_MAG_FILTER, GL_LINEAR },
+	});
+	tex->SetData(util::ImageLoader("assets/wall.jpg"));
 	// binding index buffer
 	std::vector<uint32_t> indicies	   = { 0, 1, 2, 3, 2, 0 };
 	auto				  index_buffer = gl::IndexBuffer::New();

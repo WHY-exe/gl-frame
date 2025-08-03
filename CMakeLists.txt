@@ -23,7 +23,7 @@ endif()
 # public include dir
 set(THIRD_PARTY_INCLUDE "${PROJECT_SOURCE_DIR}/third-party")
 # binary output dir
-set(BIN_DIR "${CMAKE_BINARY_DIR}/../bin/${CMAKE_BUILD_TYPE}/")
+set(BIN_DIR "${CMAKE_BINARY_DIR}/bin")
 # example binary output dir
 set(EXAMPLE_DIR "${CMAKE_BINARY_DIR}/example")
 # test binary output dir

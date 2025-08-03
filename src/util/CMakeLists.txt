@@ -27,10 +27,3 @@ set_property(TARGET ${PROJECT_NAME} APPEND_STRING
 )
 
 add_dependencies(${PROJECT_NAME} spdlog::spdlog stb_image)
-
-set_target_properties(${PROJECT_NAME}
-    PROPERTIES
-        LIBRARY_OUTPUT_DIRECTORY "${BIN_DIR}/static_lib"
-        ARCHIVE_OUTPUT_DIRECTORY "${BIN_DIR}/static_lib"
-        RUNTIME_OUTPUT_DIRECTORY "${BIN_DIR}/static_lib"
-)

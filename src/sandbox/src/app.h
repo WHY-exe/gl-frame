@@ -1,9 +1,9 @@
 #pragma once
 #include <GL/glew.h>
 
-#include "glfw_wrap/context.h"
+#include "glfw_backend/context.h"
 #include "gl/program.h"
-#include "glfw_wrap/window.h"
+#include "glfw_backend/window.h"
 #include "util/macro.h"
 
 namespace sandbox {

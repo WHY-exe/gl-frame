@@ -1,5 +1,4 @@
 #pragma once
-#include <GL/glew.h>
 #include <system_error>
 #include <tl/expected.hpp>
 
