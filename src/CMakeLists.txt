@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 3.11...3.20)
-project(sandbox)
+project(sandbox VERSION 1.0.0)
+
+configure_file(
+    ${PROJECT_SOURCE_DIR}/version.h.in
+    ${CMAKE_CURRENT_BINARY_DIR}/version.h
+    @ONLY
+)
 
 file(GLOB_RECURSE src_file 
     "${PROJECT_SOURCE_DIR}/*/*.h"
