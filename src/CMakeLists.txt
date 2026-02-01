@@ -14,12 +14,12 @@ file(GLOB_RECURSE src_file
     "${PROJECT_SOURCE_DIR}/*/*.cpp"
 )
 
-set(PIPELINE_BACKEND gl)
+# set(PIPELINE_BACKEND gl)
 file(GLOB_RECURSE pipeline_file
-    "${PROJECT_SOURCE_DIR}/pipeline/core/*.h"
-    "${PROJECT_SOURCE_DIR}/pipeline/core/*.hpp"
-    "${PROJECT_SOURCE_DIR}/pipeline/${PIPELINE_BACKEND}/*.c"
-    "${PROJECT_SOURCE_DIR}/pipeline/${PIPELINE_BACKEND}/*.cpp"
+    "${PROJECT_SOURCE_DIR}/pipeline/*/*.h"
+    "${PROJECT_SOURCE_DIR}/pipeline/*/*.hpp"
+    "${PROJECT_SOURCE_DIR}/pipeline/*/*.c"
+    "${PROJECT_SOURCE_DIR}/pipeline/*/*.cpp"
 )
 
 add_executable(${PROJECT_NAME} 
