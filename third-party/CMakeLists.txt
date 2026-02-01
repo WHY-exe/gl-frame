@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.11...3.20)
 # add_subdirectory(assimp EXCLUDE_FROM_ALL)
+add_subdirectory(breakpad EXCLUDE_FROM_ALL)
 # if(BUILD_TEST)
 #     add_subdirectory(Catch2 EXCLUDE_FROM_ALL)
 # endif()

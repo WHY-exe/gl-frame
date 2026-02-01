@@ -6,6 +6,7 @@
 #include "gl/texture.h"
 #include "gl/vertex.h"
 #include "window/context.h"
+#include "util/log.h"
 #include "util/image_loader.h"
 #include <spdlog/spdlog.h>
 #include <cmath>
@@ -53,7 +54,7 @@ void App::DoRender(gl::Program& program) noexcept {
 	// glDrawArrays(GL_TRIANGLES, 0, 6);
 	auto draw_res = gl::CheckError(glDrawElements, GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 	if (!draw_res) {
-		SPDLOG_ERROR("encounter gl error: {}", draw_res.error());
+		LOGE("encounter gl error: {}", draw_res.error());
 	}
 }
 
@@ -61,7 +62,7 @@ int App::Run() {
 	// pre-create shader and bind them to the pipeline
 	auto program = gl::Program::New();
 	if (!program) {
-		SPDLOG_ERROR("fail to init glProgram: {}", program.error());
+		LOGE("fail to init glProgram: {}", program.error());
 		return -1;
 	}
 	// read shader file from resource
@@ -73,12 +74,12 @@ int App::Run() {
 	// attach shader to pipeline
 	auto vs_attach_res = program->AttachShader(gl::ShaderType::VERTEX, vertex_shader_text);
 	if (!vs_attach_res) {
-		SPDLOG_ERROR("fail to attach vertex shader: {}", vs_attach_res.error());
+		LOGE("fail to attach vertex shader: {}", vs_attach_res.error());
 		return -1;
 	}
 	auto fs_attach_res = program->AttachShader(gl::ShaderType::FRAGMENT, frag_shader_text);
 	if (!fs_attach_res) {
-		SPDLOG_ERROR("fail to attach fragment shader: {}", fs_attach_res.error());
+		LOGE("fail to attach fragment shader: {}", fs_attach_res.error());
 		return -1;
 	}
 	program->Bind();
@@ -91,7 +92,7 @@ int App::Run() {
 	};
 	auto vertex_buffer = gl::vertex::Buffer::New();
 	if (!vertex_buffer) {
-		SPDLOG_ERROR("fail to init vertex buffer: {}", vertex_buffer.error());
+		LOGE("fail to init vertex buffer: {}", vertex_buffer.error());
 		return -1;
 	}
 	vertex_buffer->SetBuffer(std::move(vertices));

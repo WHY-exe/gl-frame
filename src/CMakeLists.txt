@@ -58,6 +58,7 @@ target_link_libraries(${PROJECT_NAME}
         stb_image
         spdlog::spdlog
         tl::expected
+        breakpad_client
     PRIVATE
         glsl::shader
 )
@@ -72,4 +73,12 @@ set_target_properties(${PROJECT_NAME}
         LIBRARY_OUTPUT_DIRECTORY "${BIN_DIR}/static_lib"
         ARCHIVE_OUTPUT_DIRECTORY "${BIN_DIR}/"
         RUNTIME_OUTPUT_DIRECTORY "${BIN_DIR}/"
+)
+
+include(${PROJECT_SOURCE_DIR}/../cmake/UtilityTargets.cmake)
+install(TARGETS ${PROJECT_NAME}
+    DESTINATION ${INSTALL_DIR_NO_PREFIX}
+)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/../assets
+    DESTINATION ${INSTALL_DIR_NO_PREFIX}
 )
